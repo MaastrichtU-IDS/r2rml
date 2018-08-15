@@ -33,6 +33,7 @@ format = NQUADS
 
 ```bash
 $ docker run -it --rm --link some-progress:my-progress -v <local dir>:/data r2rml /data/config.properties
+# Where config.properties is placed at the root of the <local dir> volume that is shared with the container
 ```
 **Hint:** check out [official postgresql docker documentation](https://hub.docker.com/_/postgres/)
 
