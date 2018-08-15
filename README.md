@@ -8,7 +8,28 @@
 $ docker build -t r2rml .
 ```
 
-### The run the R2RML processor, execute the following command:
+### To run R2RML on Drill for data2services project
+
+A default config.properties file is provided for the data2services project.
+
+This file can be find in the root of the container: `/config.properties`
+
+```shell
+docker run -it --rm --link drill:drill -v /data/my_dataset:/data r2rml /config.properties
+```
+
+* Content of the `config.properties` file:
+
+```properties
+connectionURL = jdbc:drill:drillbit=drill:31010
+mappingFile = /data/mapping.ttl
+outputFile = /data/rdf_output.nq
+format = NQUADS
+```
+
+
+
+### To run the R2RML processor, execute the following command:
 
 ```bash
 $ docker run -it --rm --link some-progress:my-progress -v <local dir>:/data r2rml /data/config.properties
@@ -42,7 +63,7 @@ password = bar
 mappingFile = /data/mapping.ttl
 outputFile = /data/output.ttl.gz
 format = TURTLE
-```   
+```
 **Hint:** my-postgres is the name of the link from the docker command above
 
 The output, after passing the properties file as an argument to the R2RML processor, should look as follows:
