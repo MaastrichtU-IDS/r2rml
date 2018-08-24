@@ -9,6 +9,8 @@ WORKDIR $TMP_DIR
 
 COPY . .
 
+COPY config.properties /config.properties
+
 RUN mvn clean install -Dmaven.test.skip=true
 
 RUN mkdir $APP_DIR && \
