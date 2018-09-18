@@ -88,9 +88,10 @@ public class R2RMLProcessor {
 				if(pass != null && !"".equals(pass))
 					props.setProperty("password", pass);			
 				connection = DriverManager.getConnection(configuration.getConnectionURL(), props);
-				// PostgreSQL JDBC driver seems to have autocommit enabled which leads to a
-				// Java HeapSpace Overflow
-				connection.setAutoCommit(false);
+				// PostgreSQL JDBC driver seems to have autocommit enabled which leads to a Java HeapSpace Overflow
+				if (connection.getMetaData().getURL().startsWith("jdbc:postgresql:")) {
+					connection.setAutoCommit(false);
+				}
 			}
 			
 		} catch (SQLException e) {
