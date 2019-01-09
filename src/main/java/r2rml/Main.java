@@ -34,6 +34,8 @@ public class Main {
 		try { Class.forName("org.postgresql.Driver").newInstance(); } catch(Exception e) {e.printStackTrace();};
 		try { Class.forName("org.apache.drill.jdbc.Driver").newInstance(); } catch(Exception e) {e.printStackTrace();};
 		try { Class.forName("com.mysql.jdbc.Driver").newInstance(); } catch(Exception e) {e.printStackTrace();};
+		try { Class.forName("org.sqlite.JDBC").newInstance(); } catch(Exception e) {e.printStackTrace();};
+		try { Class.forName("org.mariadb.jdbc.Driver").newInstance(); } catch(Exception e) {e.printStackTrace();};
 		try { Class.forName("org.h2.Driver").newInstance(); } catch(Exception e) {e.printStackTrace();};
 	}
 
