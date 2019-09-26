@@ -17,6 +17,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>info.picocli</groupId>
+			<artifactId>picocli</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.jena</groupId>
 			<artifactId>jena-arq</artifactId>
 			<version>3.0.1</version>

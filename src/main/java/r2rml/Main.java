@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.zip.GZIPOutputStream;
 
+import r2rml.engine.CliOptions;
+
 import org.apache.jena.iri.IRIFactory;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.rdf.model.Model;
@@ -41,13 +43,15 @@ public class Main {
 
 	public static void main(String[] args) {
 
-
 		try {
+			Configuration configuration = null;
 			if(args.length != 1) {
-				throw new R2RMLException("Only and exactly one config file needs to be passed as an argument", null);
+				// If more than 1 arguments, we load config from arguments using picocli
+				CliOptions cli = new CliOptions(args);
+				configuration = new Configuration(cli);
+			} else {
+				configuration = new Configuration(args[0]);
 			}
-
-			Configuration configuration = new Configuration(args[0]);
 
 			if(configuration.getConnectionURL() == null) {
 				throw new R2RMLException("A connection URL is mandatory.", null);
