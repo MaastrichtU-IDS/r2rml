@@ -42,7 +42,7 @@ password = bar
 mappingFile = /data/mapping.ttl
 outputFile = /data/output.ttl.gz
 format = TURTLE
-```   
+```
 **Hint:** my-postgres is the name of the link from the docker command above
 
 The output, after passing the properties file as an argument to the R2RML processor, should look as follows:
@@ -95,7 +95,24 @@ This implementation of R2RML re-implemented the ideas presented in [1], allowing
 .
 ```
 
+## Run using command line parameters
+
+```bash
+# Start Apache Drill
+docker run -dit --rm -p 8047:8047 -p 31010:31010 --name drill -v /data:/data:ro maastrichtuids/apache-drill
+
+# Run R2RML
+docker run -it --rm --link drill:drill -v /data:/data maastrichtuids/r2rml \ 
+  --connectionURL jdbc:drill:drillbit=drill:31010 \
+  --mappingFile /data/mapping.trig \
+  --outputFile /data/rdf_output.nq \
+  --format NQUADS
+```
+
+
+
 ## License
+
 This implementation of R2RML is written by [Christophe Debruyne](http://www.christophedebruyne.be/) and released under the [MIT license](http://opensource.org/licenses/MIT).
 
 ## References
