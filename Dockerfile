@@ -17,4 +17,4 @@ RUN mkdir $APP_DIR && \
     
 WORKDIR $APP_DIR
 
-ENTRYPOINT ["java","-jar","r2rml.jar"]
+ENTRYPOINT ["java","-jar","/app/r2rml.jar"]
